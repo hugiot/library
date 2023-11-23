@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE instance-profile
+        SYSTEM "https://resources.jetbrains.com/writerside/1.0/product-profile.dtd">
+
+<instance-profile id="xiaocai"
+                 name="xiaocai"
+                 start-page="8a8b895fcc504b75f45b6c8e4d15cc4d.md">
+
+    <toc-element topic="8a8b895fcc504b75f45b6c8e4d15cc4d.md">
+        <toc-element topic="edc9f0a5a5d57797bf68e37364743831.md">
+            <toc-element topic="7b8131e7f9beb0b1050bd87312c6020d.md"/>
+        </toc-element>
+        <toc-element topic="aea23489ce3aa9b6406ebb28e0cda430.md"/>
+    </toc-element>
+</instance-profile>
