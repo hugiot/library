@@ -1,0 +1,126 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat"><html lang="en-US" data-colors-preset="contrast" data-primary-color="#307FFF"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex">  <meta name="built-on" content="2023-11-24T16:55:30.748391202"><meta name="build-number" content="${buildNumber}">       <title>supervisor 的安装和使用 | xiaocai</title><script id="virtual-toc-data" type="application/json">[{"id":"16eaec22_1424","level":0,"title":"简介","anchor":"#16eaec22_1424"},{"id":"16eaec22_1426","level":0,"title":"安装","anchor":"#16eaec22_1426"},{"id":"16eaec22_1445","level":0,"title":"使用","anchor":"#16eaec22_1445"}]</script><script id="topic-shortcuts" type="application/json"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.1.5-b176/app.css" rel="stylesheet">   <link rel="apple-touch-icon" sizes="180x180" href="https://jetbrains.com/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="https://jetbrains.com/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="https://jetbrains.com/favicon-16x16.png"><link rel="manifest" href="https://jetbrains.com/site.webmanifest"><link rel="mask-icon" href="https://jetbrains.com/safari-pinned-tab.svg" color="#000000"><meta name="msapplication-TileColor" content="#000000"/><meta name="msapplication-TileImage" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-144x144.png"/><meta name="msapplication-square70x70logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-70x70.png"/><meta name="msapplication-square150x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-150x150.png"/><meta name="msapplication-wide310x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x150.png"/><meta name="msapplication-square310x310logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x310.png"/>  <meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="supervisor 的安装和使用 | xiaocai"/><meta property="og:description" content=""/><meta property="og:image" content=""/><meta property="og:site_name" content="xiaocai Help"/><meta property="og:type" content="website"/><meta property="og:locale" content="en_US"/><meta property="og:url" content="/dev/fbf447b65d2a54411d4853b43fcf403c.html"/><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="supervisor 的安装和使用 | xiaocai"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json"> { "@context": "http://schema.org", "@type": "WebPage", "@id": "/dev/fbf447b65d2a54411d4853b43fcf403c.html#webpage", "url": "/dev/fbf447b65d2a54411d4853b43fcf403c.html", "name": "supervisor 的安装和使用 | xiaocai", "description": "", "image": "", "inLanguage":"en-US" }</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json"> { "@type": "WebSite", "@id": "/#website", "url": "/", "name": "xiaocai Help" }</script><!-- End Schema.org --> <!-- Mermaid light/dark themes -->  <link rel="stylesheet" type="text/css" href="mermaid.css">  </head>     <body data-id="fbf447b65d2a54411d4853b43fcf403c" data-main-title="supervisor 的安装和使用" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}"  data-template="article"  data-breadcrumbs="5b0520a9bf5e8d87c0b8c6e58766e184.md|应用"  >   <div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>xiaocai dev Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="fbf447b65d2a54411d4853b43fcf403c"  id="fbf447b65d2a54411d4853b43fcf403c.md"  >supervisor 的安装和使用</h1>  <section class="chapter"><h2 id="16eaec22_1424" data-toc="16eaec22_1424">简介</h2><p id="16eaec22_1425">Supervisor是用Python开发的一套通用的进程管理程序，能将一个普通的命令行进程变为后台daemon，并监控进程状态，异常退出时能自动重启。</p></section><section class="chapter"><h2 id="16eaec22_1426" data-toc="16eaec22_1426">安装</h2><aside class="prompt" data-type="tip" data-title="" id="16eaec22_1427"><p id="16eaec22_1428">Supervisor 适用于 Python 3 版本 3.4 或更高版本，以及 Python 2 版本 2.7</p></aside><ol class="list _decimal" id="16eaec22_1429"  type="1"  ><li class="list__item" id="16eaec22_1430"><p>通过 <code class="code" id="16eaec22_1431">pip</code> 安装</p></li></ol><div class="code-block" data-lang="bash"         >
+pip install supervisor
+</div><ol class="list _decimal" id="16eaec22_1433"  type="1"  start="2"><li class="list__item" id="16eaec22_1434"><p>导出配置</p></li></ol><div class="code-block" data-lang="bash"         >
+# root 用户
+echo_supervisord_conf &gt; /etc/supervisord.conf
+# sudo 用户
+sudo sh -c &quot;echo_supervisord_conf &gt; /etc/supervisord.conf&quot;
+</div><ol class="list _decimal" id="16eaec22_1436"  type="1"  start="3"><li class="list__item" id="16eaec22_1437"><p>修改配置</p></li></ol><div class="code-block" data-lang="bash"         >
+sudo sed -i 's/tmp\/supervisor.sock/var\/tmp\/supervisor.sock/g' /etc/supervisord.conf
+sudo sed -i 's/tmp\/supervisord.pid/var\/tmp\/supervisord.pid/g' /etc/supervisord.conf
+</div><ol class="list _decimal" id="16eaec22_1439"  type="1"  start="4"><li class="list__item" id="16eaec22_1440"><p>配置守护进程</p></li></ol><div class="code-block" data-lang="bash"         >
+sudo vim /usr/lib/systemd/system/supervisord.service
+
+# 文件内容如下：
+[Unit]
+Description=Supervisor daemon
+
+[Service]
+Type=forking
+ExecStart=/usr/local/bin/supervisord
+ExecStop=/usr/local/bin/supervisorctl $OPTIONS shutdown
+ExecReload=/usr/bin/supervisorctl $OPTIONS reload
+KillMode=process
+Restart=on-failure
+RestartSec=42s
+
+[Install]
+WantedBy=multi-user.target
+</div><ol class="list _decimal" id="16eaec22_1442"  type="1"  start="5"><li class="list__item" id="16eaec22_1443"><p>启动服务</p></li></ol><div class="code-block" data-lang="bash"         >
+# 重载服务列表
+sudo systemctl daemon-reload
+# 启动
+sudo systemctl start supervisord
+# 开机自启
+sudo systemctl enable supervisord
+</div></section><section class="chapter"><h2 id="16eaec22_1445" data-toc="16eaec22_1445">使用</h2><section class="chapter"><h3 id="16eaec22_1446" data-toc="16eaec22_1446">常用配置说明</h3><div class="code-block" data-lang="bash"         >
+# x 为项目名称，名称中不得包含冒号或方括号
+[program:x]
+# process_name 进程名称，%(program_name)s代表项目名称，%(process_num)02d代表生成两位数字
+process_name=%(program_name)s_%(process_num)02d
+# command 执行命令
+command=pwd
+# numprocs 进程数量
+numprocs=4
+# numprocs_start 进程的起始编号
+numprocs_start=0
+# priority 优先级，程序在启动和关闭顺序中的相对优先级，较低的优先级（首先启动，最后关闭），较高的优先级（最后启动，首先关闭）
+priority=999
+# autostart 自动启动，启动supervisor的时候自动启动
+autostart=true
+# autorestart 自动重启
+autorestart=true
+# user 指定用户执行操作
+user=www
+# redirect_stderr 输出supervisord其标准输出文件描述符
+redirect_stderr=true
+# stdout_logfile 指定日志文件
+stdout_logfile=/www/supervisor.log
+
+# 项目组管理，x为组名称
+[group:x]
+# 项目名称，中间用逗号隔开
+programs=bar,baz
+# 优先级，非必填，默认999
+priority=999
+</div></section><section class="chapter"><h3 id="16eaec22_1448" data-toc="16eaec22_1448">详细配置说明</h3><div class="code-block" data-lang="bash"         >
+[program:cat]
+command=/bin/cat # 运行的命令
+process_name=%(program_name)s # 进程名称
+numprocs=1  # 进程数量
+directory=/tmp # 命令执行目录
+umask=022 # 表示进程的umask八进制数，例如002、022
+priority=999 # 优先级
+autostart=true # 自动启动，在启动supervisord时自动启动
+autorestart=unexpected # 自动重启
+startsecs=10 # 启动后程序需要保持运行以认为启动成功的总秒数
+startretries=3 # 尝试启动次数
+exitcodes=0 # 退出错误码
+stopsignal=TERM # 停止信号，可以是TERM, HUP, INT, QUIT, KILL, USR1, or USR2
+stopwaitsecs=10 # 停止等待的秒数，超时会通过SIGKILL杀死进程
+stopasgroup=false # 停止整个进程组
+killasgroup=false # 杀死整个进程组
+user=chrism # 使用指定用户启动进程
+redirect_stderr=false # 不建议设置
+stdout_logfile=/a/path # 标准输出日志文件
+stdout_logfile_maxbytes=1MB # 标准输出日志文件大小，单位可以为：KB、MB、GB，如果为0则不限制日志大小
+stdout_logfile_backups=10 # 保留日志文件数量，如果为0则不保留
+stdout_capture_maxbytes=1MB
+stdout_events_enabled=false
+stderr_logfile=/a/path
+stderr_logfile_maxbytes=1MB
+stderr_logfile_backups=10
+stderr_capture_maxbytes=1MB
+stderr_events_enabled=false
+environment=A=&quot;1&quot;,B=&quot;2&quot;
+serverurl=AUTO
+</div></section><section class="chapter"><h3 id="16eaec22_1450" data-toc="16eaec22_1450">示例</h3><section class="chapter"><h4 id="go" data-toc="go">go 应用</h4><div class="code-block" data-lang="bash"         >
+[program:http-go]
+process_name=%(program_name)s_%(process_num)02d
+command=/home/xiaocai/code/test/go-test/main
+autostart=true
+autorestart=true
+user=root
+numprocs=1
+redirect_stderr=true
+stdout_logfile=/home/xiaocai/code/test/go-test/main.log
+</div></section><section class="chapter"><h4 id="laravel" data-toc="laravel">laravel 应用</h4><div class="code-block" data-lang="bash"         >
+[program:laravel-worker]
+process_name=%(program_name)s_%(process_num)02d
+command=php /home/forge/app.com/artisan queue:work sqs --sleep=3 --tries=3
+autostart=true
+autorestart=true
+user=www
+numprocs=2
+redirect_stderr=true
+stdout_logfile=/home/forge/app.com/worker.log
+</div></section></section><section class="chapter"><h3 id="16eaec22_1453" data-toc="16eaec22_1453">客户端操作</h3><div class="code-block" data-lang="bash"         >
+sudo supervisorctl
+supervisor&gt; help
+
+default commands (type help &lt;topic&gt;):
+=====================================
+add    exit      open  reload  restart   start   tail   
+avail  fg        pid   remove  shutdown  status  update 
+clear  maintail  quit  reread  signal    stop    version
+</div></section></section><div class="last-modified"> Last modified: 24 November 2023</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom">  <a class="navigation-links__prev" href="5b0520a9bf5e8d87c0b8c6e58766e184.html">应用</a>   </div></article><div id="disqus_thread"></div></div></section></main></div>  <script src="https://resources.jetbrains.com/writerside/apidoc/6.1.5-b176/app.js"></script></body></html>
